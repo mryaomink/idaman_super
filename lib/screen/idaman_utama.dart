@@ -17,8 +17,6 @@ class IdamanUtama extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: const [
               HeaderYao(),
               IdamanSlider(),

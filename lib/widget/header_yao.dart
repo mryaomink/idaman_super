@@ -21,12 +21,12 @@ class HeaderYao extends StatelessWidget {
                 width: 19.0,
               ),
               Text(
-                'Selamat Bertaktifitas,\nDeswita',
+                'Selamat Bertaktifitas,\nYaomink',
                 style: TextStyle(
                     fontFamily: 'Dongle',
                     fontSize: 28.0,
                     fontWeight: FontWeight.bold,
-                    height: 1.0),
+                    height: 0.7),
               )
             ],
           ),
