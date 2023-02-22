@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:idaman_bjb/screen/idaman_utama.dart';
+import 'package:idaman_bjb/screen/splash_idaman.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.light,
       ),
-      home: const IdamanUtama(),
+      home: const IdamanSplash(),
     );
   }
 }

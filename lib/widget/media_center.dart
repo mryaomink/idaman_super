@@ -13,6 +13,8 @@ class MediaCenter extends StatefulWidget {
 
 class _MediaCenterState extends State<MediaCenter> {
   late Future<List<MediaCenterData>> mediaPost;
+
+  // fungsi memangil Rest Api Dari Wordpress
   Future<List<MediaCenterData>> _fetchPosts() async {
     final response = await http.get(Uri.parse(
         'https://mediacenter.banjarbarukota.go.id/wp-json/wp/v2/posts'));
@@ -82,62 +84,9 @@ class _MediaCenterState extends State<MediaCenter> {
                       itemCount: snapshot.data!.length,
                       itemBuilder: (BuildContext context, int index) {
                         final post = snapshot.data![index];
-
-                        // return Card(
-                        //   color: const Color.fromARGB(60, 201, 195, 195),
-                        //   elevation: 0,
-                        //   child: ListTile(
-                        //     contentPadding: const EdgeInsets.all(15.0),
-                        // title:
-                        //     subtitle: Padding(
-                        //       padding: const EdgeInsets.only(top: 16.0),
-                        //       child: Text(parse((post.excerpt).toString())
-                        //           .documentElement!
-                        //           .text),
-                        //     ),
-                        //   ),
-                        // );
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Stack(
-                            alignment: Alignment.bottomLeft,
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(15.0),
-                                child: Image.network(
-                                  post.yoastHead,
-                                  fit: BoxFit.fitWidth,
-                                  width: 284,
-                                  height: 147,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 10.0,
-                              ),
-                              Container(
-                                padding: const EdgeInsets.all(8.0),
-                                color: Colors.white.withOpacity(0.7),
-                                width: MediaQuery.of(context).size.width * 0.6,
-                                child: Text(
-                                  post.title,
-                                  style: const TextStyle(
-                                      fontFamily: 'Dongle',
-                                      fontSize: 20.0,
-                                      overflow: TextOverflow.ellipsis,
-                                      height: 0.9),
-                                  maxLines: 2,
-                                ),
-                              ),
-                              // Text(
-                              //   parse((post.excerpt).toString())
-                              //       .documentElement!
-                              //       .text,
-                              //   style: const TextStyle(
-                              //       fontSize: 18, fontFamily: 'Dongle'),
-                              //   maxLines: 2,
-                              // ),
-                            ],
-                          ),
+                          child: BeritaCard(post: post),
                         );
                       },
                     );
@@ -172,6 +121,50 @@ class _MediaCenterState extends State<MediaCenter> {
         ),
         const SizedBox(
           height: 20.0,
+        ),
+      ],
+    );
+  }
+}
+
+class BeritaCard extends StatelessWidget {
+  const BeritaCard({
+    super.key,
+    required this.post,
+  });
+
+  final MediaCenterData post;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      alignment: Alignment.bottomLeft,
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(15.0),
+          child: Image.network(
+            post.yoastHead,
+            fit: BoxFit.fitWidth,
+            width: 284,
+            height: 147,
+          ),
+        ),
+        const SizedBox(
+          height: 10.0,
+        ),
+        Container(
+          padding: const EdgeInsets.all(8.0),
+          color: Colors.white.withOpacity(0.7),
+          width: MediaQuery.of(context).size.width * 0.6,
+          child: Text(
+            post.title,
+            style: const TextStyle(
+                fontFamily: 'Dongle',
+                fontSize: 20.0,
+                overflow: TextOverflow.ellipsis,
+                height: 0.9),
+            maxLines: 2,
+          ),
         ),
       ],
     );
