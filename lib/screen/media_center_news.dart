@@ -56,8 +56,9 @@ class _MediaCenterNewsState extends State<MediaCenterNews> {
                         elevation: 0,
                         child: ListTile(
                           contentPadding: const EdgeInsets.all(15.0),
+                          leading: Image.network(post.yoastHead),
                           title: Text(
-                            snapshot.data![index].title,
+                            post.title,
                             style: const TextStyle(
                                 fontFamily: 'Dongle',
                                 fontSize: 25.0,
@@ -65,7 +66,7 @@ class _MediaCenterNewsState extends State<MediaCenterNews> {
                           ),
                           subtitle: Padding(
                             padding: const EdgeInsets.only(top: 16.0),
-                            child: Text(parse((post.excerpt).toString())
+                            child: Text(parse((post.content).toString())
                                 .documentElement!
                                 .text),
                           ),

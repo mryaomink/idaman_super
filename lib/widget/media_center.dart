@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:html/parser.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:idaman_bjb/models/media_center.dart';
@@ -73,7 +72,7 @@ class _MediaCenterState extends State<MediaCenter> {
         Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: SizedBox(
-              height: 260.0,
+              height: 180.0,
               child: FutureBuilder<List<MediaCenterData>>(
                 future: mediaPost,
                 builder: (context, snapshot) {
@@ -83,6 +82,7 @@ class _MediaCenterState extends State<MediaCenter> {
                       itemCount: snapshot.data!.length,
                       itemBuilder: (BuildContext context, int index) {
                         final post = snapshot.data![index];
+
                         // return Card(
                         //   color: const Color.fromARGB(60, 201, 195, 195),
                         //   elevation: 0,
@@ -98,40 +98,45 @@ class _MediaCenterState extends State<MediaCenter> {
                         //   ),
                         // );
                         return Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Card(
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Image.network(
-                                    'https://images.unsplash.com/photo-1495020689067-958852a7765e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80',
-                                    fit: BoxFit.fitWidth,
-                                    height: 200,
-                                  ),
-                                  const SizedBox(
-                                    height: 10.0,
-                                  ),
-                                  Text(
-                                    post.title,
-                                    style: const TextStyle(
-                                        fontSize: 14.0,
-                                        overflow: TextOverflow.ellipsis),
-                                    maxLines: 1,
-                                  ),
-                                  // Text(
-                                  //   parse((post.excerpt).toString())
-                                  //       .documentElement!
-                                  //       .text,
-                                  //   style: const TextStyle(
-                                  //       fontSize: 18, fontFamily: 'Dongle'),
-                                  //   maxLines: 2,
-                                  // ),
-                                ],
+                          padding: const EdgeInsets.all(8.0),
+                          child: Stack(
+                            alignment: Alignment.bottomLeft,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(15.0),
+                                child: Image.network(
+                                  post.yoastHead,
+                                  fit: BoxFit.fitWidth,
+                                  width: 284,
+                                  height: 147,
+                                ),
                               ),
-                            ),
+                              const SizedBox(
+                                height: 10.0,
+                              ),
+                              Container(
+                                padding: const EdgeInsets.all(8.0),
+                                color: Colors.white.withOpacity(0.7),
+                                width: MediaQuery.of(context).size.width * 0.6,
+                                child: Text(
+                                  post.title,
+                                  style: const TextStyle(
+                                      fontFamily: 'Dongle',
+                                      fontSize: 20.0,
+                                      overflow: TextOverflow.ellipsis,
+                                      height: 0.9),
+                                  maxLines: 2,
+                                ),
+                              ),
+                              // Text(
+                              //   parse((post.excerpt).toString())
+                              //       .documentElement!
+                              //       .text,
+                              //   style: const TextStyle(
+                              //       fontSize: 18, fontFamily: 'Dongle'),
+                              //   maxLines: 2,
+                              // ),
+                            ],
                           ),
                         );
                       },
