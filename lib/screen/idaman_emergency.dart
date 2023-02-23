@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 class IdamanEmergency extends StatelessWidget {
@@ -11,48 +10,51 @@ class IdamanEmergency extends StatelessWidget {
     return Material(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Judul Halaman',
-              style: TextStyle(
-                  fontSize: 28.0,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Dongle'),
-            ),
-            const SizedBox(
-              height: 60,
-              child: Text(
-                '''Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s''',
-                style: TextStyle(fontSize: 18.0),
+        child: SafeArea(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Judul Halaman',
+                style: TextStyle(
+                    fontSize: 28.0,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Dongle'),
               ),
-            ),
-            const SizedBox(
-              height: 20.0,
-            ),
-            Expanded(
-              child: Center(
-                child: GridView.count(
-                  crossAxisCount: 2,
-                  childAspectRatio: 0.6,
-                  mainAxisSpacing: 0.8,
-                  padding: const EdgeInsets.all(20.0),
-                  children: const [
-                    MenuEmergency(
-                        image: 'assets/images/polisi.png', judul: 'Polisi'),
-                    MenuEmergency(
-                        image: 'assets/images/fire.png', judul: 'Pemadam'),
-                    MenuEmergency(
-                        image: 'assets/images/rumahsakit.png',
-                        judul: 'Rumah Sakit'),
-                    MenuEmergency(image: 'assets/images/pln.png', judul: 'PLN'),
-                  ],
+              const SizedBox(
+                height: 60,
+                child: Text(
+                  '''Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s''',
+                  style: TextStyle(fontSize: 18.0),
                 ),
               ),
-            ),
-          ],
+              const SizedBox(
+                height: 20.0,
+              ),
+              Expanded(
+                child: Center(
+                  child: GridView.count(
+                    crossAxisCount: 2,
+                    childAspectRatio: 0.6,
+                    mainAxisSpacing: 0.8,
+                    padding: const EdgeInsets.all(20.0),
+                    children: const [
+                      MenuEmergency(
+                          image: 'assets/images/polisi.png', judul: 'Polisi'),
+                      MenuEmergency(
+                          image: 'assets/images/fire.png', judul: 'Pemadam'),
+                      MenuEmergency(
+                          image: 'assets/images/rumahsakit.png',
+                          judul: 'Rumah Sakit'),
+                      MenuEmergency(
+                          image: 'assets/images/pln.png', judul: 'PLN'),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

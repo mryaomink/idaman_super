@@ -52,26 +52,36 @@ class _MediaCenterNewsState extends State<MediaCenterNews> {
                     itemBuilder: (BuildContext context, int index) {
                       final post = snapshot.data![index];
                       return Card(
-                        color: const Color.fromARGB(60, 201, 195, 195),
-                        elevation: 0,
-                        child: ListTile(
-                          contentPadding: const EdgeInsets.all(15.0),
-                          leading: Image.network(post.yoastHead),
-                          title: Text(
-                            post.title,
-                            style: const TextStyle(
-                                fontFamily: 'Dongle',
-                                fontSize: 25.0,
-                                height: 0.7),
-                          ),
-                          subtitle: Padding(
-                            padding: const EdgeInsets.only(top: 16.0),
-                            child: Text(parse((post.content).toString())
-                                .documentElement!
-                                .text),
-                          ),
-                        ),
-                      );
+                          color: const Color.fromARGB(220, 245, 237, 237),
+                          elevation: 6,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                decoration: const BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                    bottomRight: Radius.circular(30.0),
+                                  ),
+                                ),
+                                height: 300,
+                                width: MediaQuery.of(context).size.width,
+                                child: Image.network(
+                                  post.yoastHead,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 20.0,
+                              ),
+                              Text(
+                                parse((post.excerpt).toString())
+                                    .documentElement!
+                                    .text,
+                                style: const TextStyle(
+                                    fontFamily: 'Dongle', fontSize: 22.0),
+                              ),
+                            ],
+                          ));
                     },
                   );
                 } else if (snapshot.hasError) {
