@@ -14,7 +14,7 @@ jobs:
 
     - name: Install Flutter manually
       run: |
-        curl -o flutter.tar.xz https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_2.10.1-stable.tar.xz
+        curl -o flutter.tar.xz https://storage.googleapis.com/flutter_infra/releases/stable/mac/flutter_macos_3.7.5-stable.tar.xz
         tar xf flutter.tar.xz
         export PATH="$PATH:`pwd`/flutter/bin"
 
