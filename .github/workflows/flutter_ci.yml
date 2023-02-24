@@ -1,8 +1,9 @@
 name: Build Release APK
+
 on:
   push:
     branches:
-      - main # change this to your app's main branch name
+      - main
 
 jobs:
   build:
@@ -11,11 +12,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Set up Flutter
-      uses: subosito/flutter-action@v1.3.2
-      with:
-        flutter-version: 3.7.5
-        channel: stable
+    - name: Install Flutter manually
+      run: |
+        curl -o flutter.tar.xz https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_2.10.1-stable.tar.xz
+        tar xf flutter.tar.xz
+        export PATH="$PATH:`pwd`/flutter/bin"
 
     - name: Get dependencies
       run: flutter pub get
