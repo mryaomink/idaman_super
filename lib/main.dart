@@ -26,11 +26,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Idaman',
-        theme: ThemeData(
-          brightness: Brightness.light,
-        ),
-        home: goHome ? const IdamanUtama() : const IdamanSplash());
+      debugShowCheckedModeBanner: false,
+      title: 'Idaman',
+      theme: ThemeData(
+        brightness: Brightness.light,
+      ),
+      home: goHome ? const IdamanUtama() : const IdamanSplash(),
+    );
   }
 }

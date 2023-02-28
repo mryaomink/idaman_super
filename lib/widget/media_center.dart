@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:idaman_bjb/models/media_center.dart';
 import 'package:idaman_bjb/screen/media_center_news.dart';
+import 'package:idaman_bjb/widget/image_container.dart';
 
 class MediaCenter extends StatefulWidget {
   const MediaCenter({super.key});
@@ -17,7 +18,7 @@ class _MediaCenterState extends State<MediaCenter> {
   // fungsi memangil Rest Api Dari Wordpress
   Future<List<MediaCenterData>> _fetchPosts() async {
     final response = await http.get(Uri.parse(
-        'https://mediacenter.banjarbarukota.go.id/wp-json/wp/v2/posts'));
+        'https://mediacenter.banjarbarukota.go.id/wp-json/wp/v2/posts?_embed&per_page=10'));
     if (response.statusCode == 200) {
       final fetch = jsonDecode(response.body);
       return fetch
@@ -141,14 +142,8 @@ class BeritaCard extends StatelessWidget {
       alignment: Alignment.bottomLeft,
       children: [
         ClipRRect(
-          borderRadius: BorderRadius.circular(15.0),
-          child: Image.network(
-            post.yoastHead,
-            fit: BoxFit.fitWidth,
-            width: 284,
-            height: 147,
-          ),
-        ),
+            borderRadius: BorderRadius.circular(15.0),
+            child: const ImageContainer()),
         const SizedBox(
           height: 10.0,
         ),

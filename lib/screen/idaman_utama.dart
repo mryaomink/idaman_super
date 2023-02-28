@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:idaman_bjb/screen/idaman_cuaca.dart';
 import 'package:idaman_bjb/screen/splash_idaman.dart';
 
 import 'package:idaman_bjb/widget/banjartv_card.dart';
@@ -96,6 +97,11 @@ class _IdamanUtamaState extends State<IdamanUtama> {
                   height: 15.0,
                 ),
                 const BanjarTvCard(),
+                const SizedBox(
+                  height: 20.0,
+                ),
+                const HeaderCuaca(),
+                const IdamanCuaca(),
                 const SizedBox(
                   height: 15.0,
                 ),

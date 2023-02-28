@@ -66,7 +66,7 @@ class _MediaCenterNewsState extends State<MediaCenterNews> {
                                 height: 300,
                                 width: MediaQuery.of(context).size.width,
                                 child: Image.network(
-                                  post.yoastHead,
+                                  post.title,
                                   fit: BoxFit.cover,
                                 ),
                               ),
