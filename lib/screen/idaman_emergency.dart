@@ -15,6 +15,38 @@ class IdamanEmergency extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: const Icon(
+                      Icons.chevron_left,
+                      color: Colors.amber,
+                      size: 30.0,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 4.0,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text(
+                      'Back',
+                      style: TextStyle(
+                          fontSize: 40.0,
+                          fontFamily: 'Dongle',
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ],
+              ),
               const Text(
                 'Judul Halaman',
                 style: TextStyle(

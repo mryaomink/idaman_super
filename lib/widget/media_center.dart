@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:html/parser.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:idaman_bjb/models/media_center.dart';
@@ -84,11 +85,8 @@ class _MediaCenterState extends State<MediaCenter> {
                       scrollDirection: Axis.horizontal,
                       itemCount: snapshot.data!.length,
                       itemBuilder: (BuildContext context, int index) {
-                        final post = snapshot.data![index];
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: BeritaCard(post: post),
-                        );
+                        return const Padding(
+                            padding: EdgeInsets.all(8.0), child: YaoNews());
                       },
                     );
                   } else if (snapshot.hasError) {
@@ -162,6 +160,101 @@ class BeritaCard extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class YaoNews extends StatefulWidget {
+  const YaoNews({super.key});
+
+  @override
+  State<YaoNews> createState() => _YaoNewsState();
+}
+
+class _YaoNewsState extends State<YaoNews> {
+  List<dynamic> _dataList = [];
+  Future<void> fetchData() async {
+    final response = await http.get(Uri.parse(
+        'https://mediacenter.banjarbarukota.go.id/wp-json/wp/v2/posts?_embed'));
+
+    if (response.statusCode == 200) {
+      setState(() {
+        _dataList = json.decode(response.body);
+      });
+    } else {
+      print('Failed to fetch data');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchData();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          shrinkWrap: true,
+          itemCount: _dataList.length,
+          itemBuilder: (context, index) {
+            final post = _dataList[index];
+
+            String? imgUrl;
+            final content = parse(post['content']['rendered']);
+            final imgElement = content.getElementsByTagName('img');
+            if (imgElement.isNotEmpty) {
+              imgUrl = imgElement[0].attributes['src']!;
+            } else {
+              final excerpt = parse(post['excerpt']['rendered']);
+              final imgElement = excerpt.getElementsByTagName('img');
+              if (imgElement.isNotEmpty) {
+                imgUrl = imgElement[0].attributes['src']!;
+              }
+            }
+
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Stack(
+                alignment: Alignment.bottomLeft,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(15.0),
+                    child: imgUrl != null
+                        ? Image.network(imgUrl)
+                        : const Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              'No Image',
+                              style: TextStyle(
+                                  fontSize: 18.0, fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                  ),
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(8.0),
+                    color: Colors.white.withOpacity(0.7),
+                    width: MediaQuery.of(context).size.width * 0.6,
+                    child: Text(
+                      post['title']['rendered'],
+                      style: const TextStyle(
+                          fontFamily: 'Dongle',
+                          fontSize: 20.0,
+                          overflow: TextOverflow.ellipsis,
+                          height: 0.9),
+                      maxLines: 2,
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:idaman_bjb/screen/destination_detail.dart';
 
 class IdamanDestination extends StatefulWidget {
   const IdamanDestination({super.key});
@@ -20,6 +21,7 @@ class _IdamanDestinationState extends State<IdamanDestination> {
         borderRadius: BorderRadius.circular(15.0),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Row(
             children: [
@@ -111,6 +113,24 @@ class _IdamanDestinationState extends State<IdamanDestination> {
                   );
                 }),
           ),
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const DestinationDetail(),
+                ),
+              );
+            },
+            child: const Text(
+              'selengkapnya',
+              style: TextStyle(
+                  fontSize: 20.0,
+                  fontFamily: 'Dongle',
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black),
+            ),
+          )
         ],
       ),
     );

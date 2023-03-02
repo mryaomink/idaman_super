@@ -39,6 +39,20 @@ class _IdamanPenerbanganState extends State<IdamanPenerbangan> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Back'),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(
+              Icons.chevron_left_rounded,
+              size: 40,
+              color: Colors.amber,
+            )),
+      ),
       body: SafeArea(
         child: Column(
           children: [
