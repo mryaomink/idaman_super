@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class IdamanEmergency extends StatelessWidget {
   const IdamanEmergency({
@@ -47,18 +49,25 @@ class IdamanEmergency extends StatelessWidget {
                   ),
                 ],
               ),
+              const SizedBox(
+                height: 10.0,
+              ),
               const Text(
-                'Judul Halaman',
+                'Selamat Datang Pada Layanan Darurat 112',
                 style: TextStyle(
-                    fontSize: 28.0,
+                    fontSize: 24.0,
                     fontWeight: FontWeight.bold,
-                    fontFamily: 'Dongle'),
+                    fontFamily: 'Dongle',
+                    height: 0.8),
               ),
               const SizedBox(
-                height: 60,
+                height: 10.0,
+              ),
+              const SizedBox(
+                height: 100,
                 child: Text(
-                  '''Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s''',
-                  style: TextStyle(fontSize: 18.0),
+                  '''Layanan ini untuk melayani warga dalam situasi darurat pada kabupaten/kota yang telah memiliki layanan panggilan darurat 112. Program ini merupakan inisiatif Kemenkominfo untuk menyediakan panggilan darurat yang bebas pulsa.''',
+                  style: TextStyle(fontSize: 14.0),
                 ),
               ),
               const SizedBox(
@@ -71,16 +80,44 @@ class IdamanEmergency extends StatelessWidget {
                     childAspectRatio: 0.6,
                     mainAxisSpacing: 0.8,
                     padding: const EdgeInsets.all(20.0),
-                    children: const [
-                      MenuEmergency(
-                          image: 'assets/images/polisi.png', judul: 'Polisi'),
-                      MenuEmergency(
-                          image: 'assets/images/fire.png', judul: 'Pemadam'),
-                      MenuEmergency(
-                          image: 'assets/images/rumahsakit.png',
-                          judul: 'Rumah Sakit'),
-                      MenuEmergency(
-                          image: 'assets/images/pln.png', judul: 'PLN'),
+                    children: [
+                      InkWell(
+                        onTap: () async {
+                          if (await Permission.phone.request().isGranted) {
+                            await launchUrlString('tel:05114772533');
+                          }
+                        },
+                        child: const MenuEmergency(
+                            image: 'assets/images/polisi.png', judul: 'Polisi'),
+                      ),
+                      InkWell(
+                        onTap: () async {
+                          if (await Permission.phone.request().isGranted) {
+                            await launchUrlString('tel:081349443170');
+                          }
+                        },
+                        child: const MenuEmergency(
+                            image: 'assets/images/fire.png', judul: 'Pemadam'),
+                      ),
+                      InkWell(
+                        onTap: () async {
+                          if (await Permission.phone.request().isGranted) {
+                            await launchUrlString('tel:05116749696');
+                          }
+                        },
+                        child: const MenuEmergency(
+                            image: 'assets/images/rumahsakit.png',
+                            judul: 'Rumah Sakit'),
+                      ),
+                      InkWell(
+                        onTap: () async {
+                          if (await Permission.phone.request().isGranted) {
+                            await launchUrlString('tel:05114773268');
+                          }
+                        },
+                        child: const MenuEmergency(
+                            image: 'assets/images/pln.png', judul: 'PLN'),
+                      ),
                     ],
                   ),
                 ),
@@ -125,6 +162,21 @@ class MenuEmergency extends StatelessWidget {
           judul,
           style: const TextStyle(fontSize: 32.0, fontFamily: 'Dongle'),
         )
+      ],
+    );
+  }
+}
+
+class PoliceEmergency extends StatelessWidget {
+  const PoliceEmergency({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Expanded(child: ListView.builder(itemBuilder: (context, index) {
+          return const ListTile();
+        }))
       ],
     );
   }

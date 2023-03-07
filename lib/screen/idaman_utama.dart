@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:idaman_bjb/screen/idaman_cuaca.dart';
+import 'package:idaman_bjb/screen/ramal_cuaca.dart';
 import 'package:idaman_bjb/screen/splash_idaman.dart';
 
 import 'package:idaman_bjb/widget/banjartv_card.dart';
@@ -45,53 +45,7 @@ class _IdamanUtamaState extends State<IdamanUtama> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 16.0, vertical: 20.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          const CircleAvatar(
-                            radius: 20,
-                            backgroundImage: NetworkImage(
-                                'https://images.unsplash.com/photo-1557053910-d9eadeed1c58?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80'),
-                          ),
-                          const SizedBox(
-                            width: 19.0,
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                'Selamat Bertaktifitas,',
-                                style: TextStyle(
-                                    fontFamily: 'Dongle',
-                                    fontSize: 28.0,
-                                    fontWeight: FontWeight.bold,
-                                    height: 0.7),
-                              ),
-                              Text(
-                                _name!,
-                                style: const TextStyle(
-                                    fontFamily: 'Dongle',
-                                    fontSize: 28.0,
-                                    fontWeight: FontWeight.bold,
-                                    height: 0.7),
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
-                      Image.asset(
-                        'assets/images/bell.png',
-                        fit: BoxFit.cover,
-                      ),
-                    ],
-                  ),
-                ),
+                TopLayout(name: _name),
                 const IdamanSlider(),
                 const SizedBox(
                   height: 15.0,
@@ -100,8 +54,7 @@ class _IdamanUtamaState extends State<IdamanUtama> {
                 const SizedBox(
                   height: 20.0,
                 ),
-                const HeaderCuaca(),
-                const IdamanCuaca(),
+                const RamalCuaca(),
                 const SizedBox(
                   height: 15.0,
                 ),
@@ -126,5 +79,65 @@ class _IdamanUtamaState extends State<IdamanUtama> {
         ),
       );
     }
+  }
+}
+
+class TopLayout extends StatelessWidget {
+  const TopLayout({
+    Key? key,
+    required String? name,
+  })  : _name = name,
+        super(key: key);
+
+  final String? _name;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              const CircleAvatar(
+                radius: 20,
+                backgroundImage: NetworkImage(
+                    'https://images.unsplash.com/photo-1557053910-d9eadeed1c58?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80'),
+              ),
+              const SizedBox(
+                width: 19.0,
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Selamat Bertaktifitas,',
+                    style: TextStyle(
+                        fontFamily: 'Dongle',
+                        fontSize: 28.0,
+                        fontWeight: FontWeight.bold,
+                        height: 0.7),
+                  ),
+                  Text(
+                    _name!,
+                    style: const TextStyle(
+                        fontFamily: 'Dongle',
+                        fontSize: 28.0,
+                        fontWeight: FontWeight.bold,
+                        height: 0.7),
+                  )
+                ],
+              ),
+            ],
+          ),
+          Image.asset(
+            'assets/images/bell.png',
+            fit: BoxFit.cover,
+          ),
+        ],
+      ),
+    );
   }
 }

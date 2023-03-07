@@ -126,44 +126,6 @@ class _MediaCenterState extends State<MediaCenter> {
   }
 }
 
-class BeritaCard extends StatelessWidget {
-  const BeritaCard({
-    super.key,
-    required this.post,
-  });
-
-  final MediaCenterData post;
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.bottomLeft,
-      children: [
-        ClipRRect(
-            borderRadius: BorderRadius.circular(15.0),
-            child: const ImageContainer()),
-        const SizedBox(
-          height: 10.0,
-        ),
-        Container(
-          padding: const EdgeInsets.all(8.0),
-          color: Colors.white.withOpacity(0.7),
-          width: MediaQuery.of(context).size.width * 0.6,
-          child: Text(
-            post.title,
-            style: const TextStyle(
-                fontFamily: 'Dongle',
-                fontSize: 20.0,
-                overflow: TextOverflow.ellipsis,
-                height: 0.9),
-            maxLines: 2,
-          ),
-        ),
-      ],
-    );
-  }
-}
-
 class YaoNews extends StatefulWidget {
   const YaoNews({super.key});
 

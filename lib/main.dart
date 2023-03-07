@@ -11,7 +11,6 @@ void main() async {
 
   // Check if name is already set
   bool isNameSet = prefs.containsKey('name');
-
   runApp(MyApp(goHome: isNameSet));
 }
 

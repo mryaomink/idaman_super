@@ -46,7 +46,7 @@ class BanjarTvCard extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'Saat ini sedang Live! “ACARA\nPUNCAK PERINGATAN HARI JADI BANJARBARU”',
+                  'Saat ini sedang Live! “ACARA\nMenyambut Bulan Suci Ramadhan”',
                   style: TextStyle(
                       fontFamily: 'Dongle',
                       fontSize: 20,
